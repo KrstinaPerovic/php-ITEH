@@ -1,12 +1,11 @@
 <?php
  
     require_once '../model/Putovanje.php';
-
-    $destinacija = $_POST['destinacija'] ?? "";
-    $korisnik_id = $_POST['korisnik_id'] ?? 2;
-    $cena = $_POST['cena'] ?? 0;
-    $datum = $_POST['datum'] ?? '2023-05-11';
-    $trajanje_putovanja = $_POST['trajanje_putovanja'] ?? 10;
+    $destinacija = filter_input(INPUT_POST, 'destinacija', FILTER_SANITIZE_SPECIAL_CHARS);
+    $korisnik_id = filter_input(INPUT_POST, 'korisnik_id', FILTER_VALIDATE_INT);
+    $cena = filter_input(INPUT_POST, 'cena', FILTER_VALIDATE_FLOAT);
+    $datum = filter_input(INPUT_POST, 'datum', FILTER_SANITIZE_SPECIAL_CHARS);
+    $trajanje_putovanja = filter_input(INPUT_POST, 'trajanje_putovanja', FILTER_VALIDATE_INT);
 
 
     if ($destinacija && $korisnik_id && $cena  && $datum && $cena)  {
