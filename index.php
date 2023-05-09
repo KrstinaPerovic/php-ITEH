@@ -19,6 +19,7 @@ $putovanja = Putovanje::getPutovanja();
 </head>
 <body>
         <h1>Sva putovanja</h1>
+        <button onclick="window.location.href='dodaj.php'">Dodaj putovanje</button>
         <?php if (count($putovanja) > 0): ?>
             <table>
             <thead>

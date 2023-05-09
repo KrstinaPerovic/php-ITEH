@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/../DatabaseBroker.php';
 
 class Korisnik {
     private $korisnik_id;
@@ -32,12 +32,36 @@ class Korisnik {
     public function getEmail() {
       return $this->email;
     }
-  }
 
 
 
 
+    public static function getKorisnici() {
+        $conn = DatabaseBroker::getConnection();
+        $sql = "SELECT korisnik_id, ime, prezime FROM korisnik";
+        $result = $conn->query($sql);
 
+        $korisnici = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $korisnik = [
+                    "korisnik_id" => $row["korisnik_id"],
+                    "ime" => $row["ime"],
+                    "prezime" => $row["prezime"]
+                ];
+
+                $korisnici[] = $korisnik;
+            }
+        }
+
+        $conn->close();
+
+        return $korisnici;
+    }
+
+
+}
 
 
 
