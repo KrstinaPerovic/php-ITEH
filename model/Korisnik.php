@@ -55,7 +55,7 @@ class Korisnik {
             }
         }
 
-        $conn->close();
+  
 
         return $korisnici;
     }

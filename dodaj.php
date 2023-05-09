@@ -18,7 +18,7 @@ $korisnici = Korisnik::getKorisnici();
 </head>
 <body>
     <h1>Unos novog putovanja</h1>
-    <form id="form-putovanje">
+    <form id="form-putovanje" method="POST">
         <div>
             <label for="destinacija">Destinacija:</label>
             <input type="text" id="destinacija" name="destinacija" required>
@@ -40,14 +40,16 @@ $korisnici = Korisnik::getKorisnici();
             <select id="korisnik_id" name="korisnik_id" required>
                 <option value="" disabled selected>Izaberi korisnika</option>
                 <?php foreach ($korisnici as $korisnik): ?>
-                    <option value="<?php echo $korisnik["korisnik_id"]; ?>"><?php echo $korisnik["ime"] . " " . $korisnik["prezime"]; ?></option>
+                    <option value="<?php echo $korisnik['korisnik_id']; ?>"><?php echo $korisnik["ime"] . " " . $korisnik["prezime"]; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
         <div>
-            <button type="submit">Dodaj putovanje</button>
+        <button type="submit"  >Dodaj putovanje</button>
         </div>
     </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="js/main.js"></script>
 </body>
 </html>

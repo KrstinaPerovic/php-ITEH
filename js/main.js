@@ -20,3 +20,39 @@ function obrisiPutovanje(putovanjeId) {
     });
   }
   
+
+  $("#form-putovanje").submit(function (event) {
+    var form = $('#form-putovanje')[0];
+    var formData = new FormData(form);
+    event.preventDefault();  
+ 
+
+    request = $.ajax({  
+        url: 'handler/dodaj-putovanje.php',  
+        type: 'post', 
+        processData: false,
+        contentType: false,
+        data: formData
+    });
+
+    request.done(function (response, textStatus, jqXHR) {
+        console.log(textStatus);
+        console.log(jqXHR);
+      console.log(response);
+
+        if (response === "Success") {
+            alert("Uspesno");
+         
+        }
+        else {
+       
+            console.log("Greska" + response);
+        }
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        console.error('Greska: ' + textStatus, errorThrown);
+    });
+  });
+  
+  

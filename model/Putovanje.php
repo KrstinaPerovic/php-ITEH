@@ -73,13 +73,33 @@ class Putovanje {
             $putovanja[] = $putovanje;
           }
         }
-    
-        $conn->close();
+ 
     
         return $putovanja;
       }
 
-
+      public static function dodajPutovanje($putovanje) {
+        $conn = DatabaseBroker::getConnection();
+        $destinacija = $putovanje->getDestinacija();
+        $datum = $putovanje->getDatum();
+        $trajanje = $putovanje->getTrajanjePutovanja();
+        $cena = $putovanje->getCena();
+        $korisnik_id = $putovanje->getKorisnikId();
+    
+        $sql = "INSERT INTO putovanje (destinacija, datum, trajanje_putovanja, cena, korisnik_id) 
+                VALUES ('$destinacija', '$datum', $trajanje, $cena, $korisnik_id)";
+    
+        $result = $conn->query($sql);
+ 
+    
+        if (!$result) {
+            throw new Exception(" Klasa putovanje Greška prilikom dodavanja putovanja u bazu: " . $conn->error);
+        }
+        return  $result;
+    }   
+    
+    
+    
 
 
 
