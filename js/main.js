@@ -95,3 +95,24 @@ $("#forma-azuriraj").submit(function (event) {
         alert('Greška prilikom ažuriranja putovanja. Pokušajte ponovo.');
     });
 });
+
+
+$(document).ready(function () {
+    $("#search").on("input", function () {
+        let searchTerm = $("#search").val().trim().toLowerCase();
+
+        if (searchTerm) {
+            $("tbody tr").each(function () {
+                let rowText = $(this).text().toLowerCase();
+
+                if (rowText.indexOf(searchTerm) !== -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        } else {
+            $("tbody tr").show();
+        }
+    });
+});
