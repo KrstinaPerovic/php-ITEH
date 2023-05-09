@@ -31,6 +31,8 @@ $putovanja = Putovanje::getPutovanja();
                 <th>Korisnik ID</th>
                 <th>Ime i prezime korisnika</th>
                 <th>Email korisnika</th>
+                <th>Opcije</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +46,11 @@ $putovanja = Putovanje::getPutovanja();
                     <td><?php echo $putovanje["korisnik_id"]; ?></td>
                     <td><?php echo $putovanje["ime"] . " " . $putovanje["prezime"]; ?></td>
                     <td><?php echo $putovanje["email"]; ?></td>
+                    <td>
+                    <button class="btn-edit" data-id="<?php echo $putovanje["putovanje_id"]; ?>">Izmeni</button>
+                    <button class="btn-delete" data-id="<?php echo $putovanje["putovanje_id"]; ?>" onclick="obrisiPutovanje(<?php echo $putovanje['putovanje_id']; ?>)">Obriši</button>
+
+                </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -51,6 +58,16 @@ $putovanja = Putovanje::getPutovanja();
         <?php else: ?>
             <p>Nema putovanja.</p>
         <?php endif; ?>
+
+
+
+
+
+
+
+
+
+        <script src="js/main.js"></script>
 </body>
 </html>
 
