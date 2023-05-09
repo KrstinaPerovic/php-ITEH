@@ -12,7 +12,7 @@
     if ($destinacija && $korisnik_id && $cena  && $datum && $cena)  {
         
 
-        $p = new Putovanje($destinacija, $datum, $trajanje_putovanja,$cena , $korisnik_id  );
+        $p = new Putovanje(null,$destinacija, $datum, $trajanje_putovanja,$cena , $korisnik_id  );
         $status = Putovanje::dodajPutovanje($p);
 
         echo $status ? 'Success' : 'Failed';

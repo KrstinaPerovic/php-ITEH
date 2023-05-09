@@ -48,7 +48,7 @@ $putovanja = Putovanje::getPutovanja();
                     <td><?php echo $putovanje["ime"] . " " . $putovanje["prezime"]; ?></td>
                     <td><?php echo $putovanje["email"]; ?></td>
                     <td>
-                    <button class="btn-edit" data-id="<?php echo $putovanje["putovanje_id"]; ?>">Izmeni</button>
+                    <button class="btn-edit" data-id="<?php echo $putovanje["putovanje_id"];  ?>"      >Izmeni</button>
                     <button class="btn-delete" data-id="<?php echo $putovanje["putovanje_id"]; ?>" onclick="obrisiPutovanje(<?php echo $putovanje['putovanje_id']; ?>)">Obriši</button>
 
                 </td>

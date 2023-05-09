@@ -10,12 +10,14 @@ class Putovanje {
     private $cena;
     private $korisnik_id;
     
-    public function __construct($destinacija, $datum, $trajanje_putovanja, $cena, $korisnik_id) {
+    public function __construct( $putovanje_id=null, $destinacija, $datum, $trajanje_putovanja, $cena, $korisnik_id) {
       $this->destinacija = $destinacija;
       $this->datum = $datum;
       $this->trajanje_putovanja = $trajanje_putovanja;
       $this->cena = $cena;
       $this->korisnik_id = $korisnik_id;
+      $this->putovanje_id = $putovanje_id;
+
     }
     
     public function setPutovanjeId($putovanje_id) {
@@ -101,9 +103,54 @@ class Putovanje {
     
     
 
+    public static function getPutovanjeById($id) {
+        $conn = DatabaseBroker::getConnection();
+        $sql = "SELECT  *  FROM putovanje WHERE putovanje_id = ?";
+        
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $putovanje = [
+                "putovanje_id" => $row["putovanje_id"],
+                "destinacija" => $row["destinacija"],
+                "datum" => $row["datum"],
+                "trajanje_putovanja" => $row["trajanje_putovanja"],
+                "cena" => $row["cena"],
+                "korisnik_id" => $row["korisnik_id"],
+ 
+            ];
+    
+            return $putovanje;
+        } else {
+            return null;
+        }
+    }
+    
 
-
-
+    public static function azurirajPutovanje($putovanje) {
+        $conn = DatabaseBroker::getConnection();
+        $putovanje_id = $putovanje->getPutovanjeId();
+        
+        $destinacija = $putovanje->getDestinacija();
+        $datum = $putovanje->getDatum();
+        $trajanje = $putovanje->getTrajanjePutovanja();
+        $cena = $putovanje->getCena();
+        
+    
+        $sql = "UPDATE putovanje SET destinacija = '$destinacija', datum = '$datum', trajanje_putovanja = $trajanje, cena = $cena WHERE putovanje_id = $putovanje_id";
+      
+        $result = $conn->query($sql);
+       
+        if (!$result) {
+            throw new Exception("Klasa putovanje Greška prilikom ažuriranja putovanja u bazi: " . $conn->error);
+        }
+        return $result;
+    }
+    
 
 
 
