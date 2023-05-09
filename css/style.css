@@ -88,3 +88,54 @@ tr:nth-child(even) {
     align-items: center;
   }
 }
+
+/* Stilovi za formu */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+form div {
+  margin-bottom: 1.5rem;
+}
+
+form label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"],
+form select {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+form button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: #0062cc;
+}
