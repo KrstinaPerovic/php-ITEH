@@ -25,7 +25,9 @@ $putovanja = Putovanje::getPutovanja();
             
         </div>
         <button onclick="window.location.href='dodaj.php'">Dodaj putovanje</button>
-     
+        <div>
+            <button id="sort-price">Sortiraj po ceni</button>
+        </div>
         <?php if (count($putovanja) > 0): ?>
             <table>
             <thead>

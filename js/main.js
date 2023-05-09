@@ -116,3 +116,23 @@ $(document).ready(function () {
         }
     });
 });
+
+
+$(document).ready(function () {
+    let priceSortAscending = true;
+
+    $("#sort-price").on("click", function () {
+        const rows = $("tbody tr").toArray();
+        const sortedRows = rows.sort(function (a, b) {
+            const priceA = parseInt($(a).find("td:nth-child(5)").text());
+            const priceB = parseInt($(b).find("td:nth-child(5)").text());
+
+            return priceSortAscending ? priceA - priceB : priceB - priceA;
+        });
+
+        $("tbody").empty().append(sortedRows);
+        priceSortAscending = !priceSortAscending;
+    });
+
+ 
+});
